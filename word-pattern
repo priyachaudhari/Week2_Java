@@ -1,5 +1,3 @@
-//import java.util.Collection;
-
 class Solution {
     public boolean wordPattern(String pattern, String str) {
      
@@ -10,25 +8,16 @@ class Solution {
             return false;
         
         for(int i=0; i< pattern.length();i++){
-            for(int j=0;j<strArray.length;j++){
-                if(i == j){
-                    if(map.containsKey(pattern.charAt(i))){
-                        if(map.get(pattern.charAt(i)).equals(strArray[j])){  
-                            continue;
-                        }else{
-                            return false;
-                        } 
-                    }else{
-                        if(map.containsValue(strArray[j])){
-                            return false;
-                        }else{
-                            map.put(pattern.charAt(i),strArray[j]);
-                        }
-                    }
-                }
+            if(map.containsKey(pattern.charAt(i))){
+                if(!map.get(pattern.charAt(i)).equals(strArray[i]))
+                    return false; 
+            }else{
+                if(map.containsValue(strArray[i]))
+                    return false;
+                else
+                    map.put(pattern.charAt(i),strArray[i]);
             }
         }
-        
         return true;           
     }
 }
