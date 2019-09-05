@@ -1,0 +1,27 @@
+class Solution {
+    public int uniqueMorseRepresentations(String[] words) {
+        
+        String[] Morse = {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
+        
+        Map<Character, String> map = new HashMap<>();
+        Set<String> hashset = new HashSet<>();
+         
+        for(char c='a'; c<= 'z';c++){
+            map.put(c, Morse[c - 'a']);
+        }
+        
+        for(int word=0; word<words.length;word++){
+            StringBuilder sb = new StringBuilder();
+            
+            String letters = words[word];
+            
+            for(int j=0;j < letters.length(); j++){
+                sb.append(map.get(letters.charAt(j)));
+            }
+            
+            hashset.add(sb.toString());
+        }
+
+        return hashset.size(); 
+    }
+}
