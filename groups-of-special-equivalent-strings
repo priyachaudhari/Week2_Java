@@ -1,0 +1,27 @@
+class Solution {
+    public int numSpecialEquivGroups(String[] A) {
+        
+        Set<String> hashset = new HashSet<>();
+        
+        for(String word: A){
+            char[] wordArray = swap(word.toCharArray());  
+            String result = new String(wordArray);
+            hashset.add(result);
+        }
+        return hashset.size();
+    }
+    
+    public char[] swap(char[] wordArray){
+        
+        for(int i=0; i < wordArray.length; i++){
+            for(int j= i+1; j<wordArray.length; j++){
+                if(i % 2 == j % 2 && wordArray[i] > wordArray[j]){
+                    char temp = wordArray[i];
+                    wordArray[i] = wordArray[j];
+                    wordArray[j] = temp;
+                }
+            }
+        }
+        return wordArray;    
+    }  
+}
