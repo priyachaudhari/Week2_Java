@@ -1,0 +1,28 @@
+class Solution {
+    public boolean isHappy(int n) {
+        
+        int count;     
+        Set<Integer> hashset = new HashSet<>();
+         
+        while(n > 3){
+            String numberString = Integer.toString(n);            
+            n = 0;
+            
+            for(int i=0;i<numberString.length();i++){
+                int a = Integer.parseInt(String.valueOf(numberString.charAt(i)));
+                n = n + a * a;
+            }
+            
+            if(Integer.toString(n).length()== 1 && hashset.contains(n)){
+                break;
+            }  
+            
+            hashset.add(n);
+        } 
+        
+        if(n > 1)
+            return false;     
+        
+        return true;
+    }
+}
