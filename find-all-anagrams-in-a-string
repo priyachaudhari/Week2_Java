@@ -1,0 +1,47 @@
+class Solution {
+    
+    Map<Character, Integer> map;
+    
+    public List<Integer> findAnagrams(String s, String p) {
+        
+        List<Integer> mylist = new ArrayList<Integer>();
+        
+        int i=0;
+        
+        while(i < s.length() - p.length() +1){
+            if(substr(s,p,i) != -1){
+            mylist.add(substr(s,p,i));
+            }
+            i++;
+        }
+        
+        return mylist;
+    }
+    
+    public int substr(String s, String p, int i){
+        
+        map = new HashMap<>();
+        int flag = 0;
+        StringBuilder sb=new StringBuilder();  
+        
+        sb.append(s.substring(i,i + p.length()));
+        
+        for(int j=0;j< sb.length();j++){ 
+            
+            map.put(sb.charAt(j),map.getOrDefault(sb.charAt(j),0)+1);
+            map.put(p.charAt(j),map.getOrDefault(p.charAt(j),0)-1);
+        
+        }
+        
+        for(char c:map.keySet()){
+            if(map.get(c) != 0){
+                flag = 1;
+            }
+        }
+        
+        if(flag == 1)
+            return -1;
+
+        return i;
+    }
+}
