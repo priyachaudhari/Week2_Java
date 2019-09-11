@@ -1,0 +1,46 @@
+class Solution {
+    public String frequencySort(String s) {
+        
+        Map<Character, Integer> map = new HashMap<>();
+        StringBuilder sb = new StringBuilder();
+        int max,count;
+        
+        for(int i=0;i<s.length();i++){
+            map.put(s.charAt(i),map.getOrDefault(s.charAt(i),0)+1); 
+        }
+        
+        int size = map.size();
+        
+        while(size > 0){ 
+            
+            char c = getMax(s, map);
+            count = map.get(c);
+            
+            while(count != 0){
+                sb.append(c);
+                count--;
+            }            
+            map.put(c,count);
+            size--;
+        }
+        
+        
+        return sb.toString();
+    }
+    
+    public char getMax(String s, Map<Character,Integer> map){
+        int max=0;
+        char c='a';
+        
+        for(int i =0;i<s.length();i++){
+
+            if(map.get(s.charAt(i)) > max){
+                max = map.get(s.charAt(i));
+                c = s.charAt(i);
+                
+            }
+                
+        }
+        return c;
+    }
+}
